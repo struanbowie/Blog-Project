@@ -6,11 +6,20 @@
 <h1> Home Template </h1>
 
 <div>
+
+	<a href="{% url 'create-desk' %}">Create Desk</a>
+	<hr>
 	
 	<div>
 		{% for desk in desks %}
 			<div>
+				<a href="{% url 'update-desk' desk.id %}">Edit</a>
+				<a href="{% url 'delete-desk' desk.id %}">Delete</a>
+				<span>@{{desk.host.username}}</span>
 				<h5>{{desk.id}} -- <a href="{% url 'desk' desk.id %}">{{desk.name}}</a></h5>
+				<h5>{{desk.topic}}</h5>
+				<h5>{{desk.created}}</h5>
+				<hr>
 			</div>
 
 		{% endfor %}

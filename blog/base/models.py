@@ -24,6 +24,9 @@ class Desk(models.Model):
 		return self.name
 
 
+	class Meta:
+		ordering = ['-updated', '-created']
+
 class Post(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	desk = models.ForeignKey(Desk, on_delete=models.CASCADE)
