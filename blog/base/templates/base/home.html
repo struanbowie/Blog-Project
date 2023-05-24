@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<h1> Home Template </h1>
+
+<div>
+	
+	<div>
+		{% for desk in desks %}
+			<div>
+				<h5>{{desk.id}} -- <a href="{% url 'desk' desk.id %}">{{desk.name}}</a></h5>
+			</div>
+
+		{% endfor %}
+	</div>
+
+</div>
+
+{% endblock content %}
