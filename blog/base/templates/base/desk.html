@@ -5,4 +5,19 @@
 
 <h1> {{ desk.name }} </h1>
 
+<div>
+
+	<div class="post-container">
+			{% for post in desk_post %}
+				<div>
+					<!-- <span>@{{post.user}}</span> -->
+					<p>{{post.body}}</p>
+					<h5>{{post.created|date:'d/m/y H:i'}}</h5>
+				</div>
+
+			{% endfor %}
+	</div>
+
+</div>
+
 {% endblock content %}

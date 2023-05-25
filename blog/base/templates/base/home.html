@@ -1,28 +1,58 @@
 {% extends 'main.html' %}
 
-
 {% block content %}
 
-<h1> Home Template </h1>
 
-<div>
+<style>
+	.home-container{
+		display: grid;
+		grid-template-columns: 1fr 4fr;
+	}
 
-	<a href="{% url 'create-desk' %}">Create Desk</a>
-	<hr>
-	
+	.desk-container{
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+</style>
+
+<div class="home-container">
+
 	<div>
-		{% for desk in desks %}
-			<div>
-				<a href="{% url 'update-desk' desk.id %}">Edit</a>
-				<a href="{% url 'delete-desk' desk.id %}">Delete</a>
-				<span>@{{desk.host.username}}</span>
-				<h5>{{desk.id}} -- <a href="{% url 'desk' desk.id %}">{{desk.name}}</a></h5>
-				<h5>{{desk.topic}}</h5>
-				<h5>{{desk.created}}</h5>
-				<hr>
-			</div>
+		<h3>Browse Topics</h3>
+		<hr>
 
+		<div>
+			<a href="{% url 'home' %}">All</a>
+		</div>
+
+		{% for topic in topics %}
+			<div>
+				<a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+			</div>
 		{% endfor %}
+	</div>
+
+	<div>
+		<h5>{{desk_count}} active desks</h5>
+		<a href="{% url 'create-desk' %}">Create Desk</a>
+
+		<hr>
+		
+		<div class="desk-container">
+			{% for desk in desks %}
+				<div>
+					<a href="{% url 'update-desk' desk.id %}">Edit</a>
+					<a href="{% url 'delete-desk' desk.id %}">Delete</a>
+					<span>@{{desk.host.username}}</span>
+					<h5>{{desk.id}} -- <a href="{% url 'desk' desk.id %}">{{desk.name}}</a></h5>
+					<h5>{{desk.topic}}</h5>
+					<h5>{{desk.created}}</h5>
+					<hr>
+				</div>
+
+			{% endfor %}
+		</div>
+
 	</div>
 
 </div>
